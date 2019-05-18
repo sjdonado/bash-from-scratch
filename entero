@@ -1,0 +1,60 @@
+#!/bin/bash
+
+read_number () {
+  while true; do
+    echo "Ingrese N y presione [ENTER]:"
+    read number
+    if [[ -n $number && $number =~ ^[0-9]+$ ]]; then
+      break
+    fi
+    echo "Error, número no valido"
+  done
+}
+
+clear
+read_number
+
+while true; do
+  echo "******************** Menú de Opciones *******************"
+  echo "*   R - Sumar los $number primeros números naturales.         *"
+  echo "*   S - Sumar los $number primeros números naturales pares.   *"
+  echo "*   L - Listar las $number primeras líneas de un directorio.  *"
+  echo "*          Presionar cualquier tecla para salir.        *"
+  echo "*                                                       *"
+  echo "*       Escoger opción (R/S/L) y presionar [ENTER]      *"
+  echo "*********************************************************"
+  read option
+  
+  case $option in
+    r|R)
+      echo "Suma de los primeros $number números naturales:"
+      i=1
+      acum=0
+      while [[ $i -le $number ]]; do
+        acum=$(($acum + $i))
+        i=$(($i + 1))
+      done
+      echo "Resultado: $acum"
+      ;;
+    s|S)
+      echo "Suma de los primeros $number números naturales pares:"
+      i=1
+      acum=0
+      while [[ $i -le $number ]]; do
+        if (( $i % 2 == 0 )); then
+          acum=$(($acum + $i))
+        fi
+        i=$(($i + 1))
+      done
+      echo "Resultado: $acum"
+      ;;
+    l|L)
+      echo "Ingrese ruta del directorio y presione [ENTER]:"
+      read dir
+      dir="${dir/#\~/$HOME}"
+      ls -l $dir 2>&1 | head -n $(($number + 1))
+      ;;
+    *)
+      exit 0
+  esac
+done

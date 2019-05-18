@@ -1,0 +1,16 @@
+#!/bin/bash
+
+clear
+
+if [[ -n $1 ]]; then
+  user_group_id=$(cat /etc/passwd | grep $1 | grep -E "([^:]+)" | cut -d: -f4)
+  if [[ -n $user_group_id ]]; then
+    echo "Usuario encontrado!"
+    user_group_name=$(cat /etc/group | grep :$user_group_id: | grep -E "([^:]+)" | cut -d: -f1)
+    echo "Nombre del grupo: $user_group_name"
+  else
+    echo 'Usuario no encontrado :('
+  fi
+else
+  echo "Error, ingresar usuario: $0 USUARIO"
+fi
