@@ -15,14 +15,14 @@ clear
 read_number
 
 while true; do
-  echo "******************** Menú de Opciones *******************"
+  echo "********************* Menú de Opciones *******************"
   echo "*   R - Sumar los $number primeros números naturales.         *"
   echo "*   S - Sumar los $number primeros números naturales pares.   *"
   echo "*   L - Listar las $number primeras líneas de un directorio.  *"
-  echo "*          Presionar cualquier tecla para salir.        *"
-  echo "*                                                       *"
-  echo "*       Escoger opción (R/S/L) y presionar [ENTER]      *"
-  echo "*********************************************************"
+  echo "*           Presionar cualquier tecla para salir.        *"
+  echo "*                                                        *"
+  echo "*        Escoger opción (R/S/L) y presionar [ENTER]      *"
+  echo "**********************************************************"
   read option
   
   case $option in
